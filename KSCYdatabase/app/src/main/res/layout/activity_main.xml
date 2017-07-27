@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/guillotine_background_dark"
+    tools:context="org.kscy.db.kscydatabase.activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_gravity="top"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/guillotine_background">
+
+        <ImageView
+            android:id="@+id/content_hamburger"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:src="@drawable/ic_menu_white_48dp"
+            android:layout_alignParentLeft="true"/>
+
+        <org.kscy.db.kscydatabase.widget.NBLTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/app_name_up"
+            android:textColor="@color/white"
+            android:textSize="24dp"
+            android:layout_centerInParent="true"/>
+
+        <ImageView
+            android:id="@+id/content_search"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:layout_gravity="right"
+            android:src="@drawable/ic_search_white_48dp"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        android:id="@+id/content">
+
+    </FrameLayout>
+</FrameLayout>

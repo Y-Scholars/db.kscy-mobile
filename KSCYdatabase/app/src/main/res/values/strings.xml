@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">KSCY database</string>
+    <string name="app_name_up">KSCY DATABASE</string>
+
+    <string name="api_url">http://ec2-54-190-7-146.us-west-2.compute.amazonaws.com:5000/api/v1/</string>
+
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+    <string name="close_app">앱을 종료하시겠습니까?</string>
+
+    <string name="login_failed">로그인에 실패했습니다.</string>
+    <string name="logout_alert">로그아웃 하시겠습니까?</string>
+    <string name="progress_login">로그인 중입니다..</string>
+
+    <string name="share">SHARE</string>
+    <string name="library">LIBRARY</string>
+    <string name="mybook">MYBOOK</string>
+    <string name="logout">LOGOUT</string>
+    <string name="settings">SETTINGS</string>
+</resources>

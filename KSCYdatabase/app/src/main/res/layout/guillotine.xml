@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/guillotine_background"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_gravity="top"
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/guillotine_background">
+
+        <ImageView
+            android:id="@+id/guillotine_hamburger"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:padding="5dp"
+            android:src="@drawable/ic_menu_90"
+            android:layout_alignParentLeft="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="25"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:minWidth="130dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/share_group"
+                style="@style/LinearLayout.GuillotineItem"
+                android:layout_marginTop="@dimen/guillotine_medium_margin">
+
+                <!--<ImageView-->
+                    <!--style="@style/ImageView.GuillotineItem"-->
+                    <!--android:src="@drawable/ic_list_white_24dp" />-->
+
+                <org.kscy.db.kscydatabase.widget.NBTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/share"
+                    android:textSize="22sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/library_group"
+                style="@style/LinearLayout.GuillotineItem">
+
+                <!--<ImageView-->
+                    <!--style="@style/ImageView.GuillotineItem"-->
+                    <!--android:src="@drawable/ic_import_contacts_white_24dp" />-->
+
+                <org.kscy.db.kscydatabase.widget.NBTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/library"
+                    android:textSize="22sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/mybook_group"
+                style="@style/LinearLayout.GuillotineItem">
+
+                <!--<ImageView-->
+                    <!--style="@style/ImageView.GuillotineItem"-->
+                    <!--android:src="@drawable/ic_book_white_24dp" />-->
+
+                <org.kscy.db.kscydatabase.widget.NBTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/mybook"
+                    android:textSize="22sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/logout_group"
+                style="@style/LinearLayout.GuillotineItem">
+
+                <!--<ImageView-->
+                    <!--style="@style/ImageView.GuillotineItem"-->
+                    <!--android:src="@drawable/ic_exit_to_app_white_24dp"/>-->
+
+                <org.kscy.db.kscydatabase.widget.NBTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/logout"
+                    android:textSize="22sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/guillotine_divider_height" />
+
+            <LinearLayout
+                android:id="@+id/settings_group"
+                style="@style/LinearLayout.GuillotineItem">
+
+                <!--<ImageView-->
+                <!--style="@style/ImageView.GuillotineItem"-->
+                <!--android:src="@drawable/ic_settings" />-->
+
+                <org.kscy.db.kscydatabase.widget.NBTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/settings"
+                    android:textSize="22sp"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </LinearLayout>
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="25"/>
+    </LinearLayout>
+</LinearLayout>
