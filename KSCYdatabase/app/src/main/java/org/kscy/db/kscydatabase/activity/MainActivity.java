@@ -174,6 +174,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 search_btn.setVisibility(View.GONE);
                 guillotineAnimation.close();
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, ProfileFragment.newInstance()).commit();
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("확인");
+                builder.setMessage("논문 추천기능이 지원될 예정입니다.");
+                builder.create().show();
                 break;
             case R.id.logout_group :
                 search_edit.setVisibility(View.INVISIBLE);
