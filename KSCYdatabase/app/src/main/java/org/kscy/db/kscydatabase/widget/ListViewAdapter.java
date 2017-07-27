@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.kscy.db.kscydatabase.R;
+import org.kscy.db.kscydatabase.model.Mark;
 import org.kscy.db.kscydatabase.model._source;
 
 import java.util.ArrayList;
@@ -71,6 +72,17 @@ public class ListViewAdapter extends BaseAdapter {
 
     public void addItem(_source source){
         mListData.add(source);
+    }
+
+    public void addItem(Mark source){
+        _source src = new _source();
+        src.setResearch_name(source.title);
+        src.setResearcher_name(source.author);
+        src.setOrg(source.org);
+        src.setEmail(source.email);
+        src.setType(source.type);
+        src.setAbstract_kor(source.abstract_kor);
+        mListData.add(src);
     }
 
     public void remove(int position){

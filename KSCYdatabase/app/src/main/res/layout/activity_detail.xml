@@ -1,128 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/guillotine_background"
-    android:padding="16dp"
     tools:context="org.kscy.db.kscydatabase.activity.DetailActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <org.kscy.db.kscydatabase.widget.NBBTextView
-            android:id="@+id/title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"/>
-    </LinearLayout>
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="20dp" />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp">
-                <org.kscy.db.kscydatabase.widget.NBBTextView
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/author"
-                    android:textColor="@color/colorAccent"/>
-                <org.kscy.db.kscydatabase.widget.NBLTextView
-                    android:id="@+id/author_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp">
-                <org.kscy.db.kscydatabase.widget.NBBTextView
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/org"
-                    android:textColor="@color/colorAccent"/>
-                <org.kscy.db.kscydatabase.widget.NBLTextView
-                    android:id="@+id/org_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp">
-                <org.kscy.db.kscydatabase.widget.NBBTextView
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/email"
-                    android:textColor="@color/colorAccent"/>
-                <org.kscy.db.kscydatabase.widget.NBLTextView
-                    android:id="@+id/email_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp">
-                <org.kscy.db.kscydatabase.widget.NBBTextView
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/category"
-                    android:textColor="@color/colorAccent"/>
-                <org.kscy.db.kscydatabase.widget.NBLTextView
-                    android:id="@+id/category_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="6dp"
-                android:layout_marginBottom="6dp">
-                <org.kscy.db.kscydatabase.widget.NBBTextView
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/abstract_kor"
-                    android:textColor="@color/colorAccent"/>
-                <org.kscy.db.kscydatabase.widget.NBLTextView
-                    android:id="@+id/abstract_tv"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:lineSpacingExtra="4dp" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp">
         <ImageView
-            android:layout_width=""
-            android:layout_height="" />
+            android:id="@+id/bookmark"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:src="@drawable/bookmark"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <org.kscy.db.kscydatabase.widget.NBBTextView
+                android:id="@+id/title_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="20dp"
+                android:textSize="24sp"/>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp">
+                    <org.kscy.db.kscydatabase.widget.NBBTextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/author"
+                        android:textColor="@color/colorAccent"/>
+                    <org.kscy.db.kscydatabase.widget.NBLTextView
+                        android:id="@+id/author_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp">
+                    <org.kscy.db.kscydatabase.widget.NBBTextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/org"
+                        android:textColor="@color/colorAccent"/>
+                    <org.kscy.db.kscydatabase.widget.NBLTextView
+                        android:id="@+id/org_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp">
+                    <org.kscy.db.kscydatabase.widget.NBBTextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textColor="@color/colorAccent"/>
+                    <org.kscy.db.kscydatabase.widget.NBLTextView
+                        android:id="@+id/email_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp">
+                    <org.kscy.db.kscydatabase.widget.NBBTextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/category"
+                        android:textColor="@color/colorAccent"/>
+                    <org.kscy.db.kscydatabase.widget.NBLTextView
+                        android:id="@+id/category_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp">
+                    <org.kscy.db.kscydatabase.widget.NBBTextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/abstract_kor"
+                        android:textColor="@color/colorAccent"/>
+                    <org.kscy.db.kscydatabase.widget.NBLTextView
+                        android:id="@+id/abstract_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineSpacingExtra="4dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
-</LinearLayout>
+</FrameLayout>

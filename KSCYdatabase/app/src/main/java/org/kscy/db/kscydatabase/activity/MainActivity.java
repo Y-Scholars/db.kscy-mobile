@@ -23,6 +23,9 @@ import org.kscy.db.kscydatabase.fragment.BookmarkFragment;
 import org.kscy.db.kscydatabase.fragment.ProfileFragment;
 import org.kscy.db.kscydatabase.fragment.SearchFragment;
 import org.kscy.db.kscydatabase.fragment.SettingFragment;
+import org.kscy.db.kscydatabase.model.Mark;
+
+import java.util.ArrayList;
 
 import butterknife.BindString;
 import butterknife.BindView;
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean check = false;
     private View guillotineMenu;
     private GuillotineAnimation guillotineAnimation;
+    public static ArrayList<Mark> bookmark_data = new ArrayList<>();
 
     @BindView(R.id.root_main) FrameLayout root;
     @BindView(R.id.toolbar) RelativeLayout toolbar;
@@ -102,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 check = true;
             }
         });
+
+        loadBookmark();
     }
 
     private void logout() {
@@ -204,5 +210,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                getSupportFragmentManager().beginTransaction().replace(R.id.content, SettingFragment.newInstance()).commit();
 //                break;
         }
+    }
+
+    public void loadBookmark() {
+        SharedPreferences sp = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+
+        int size = sp.getInt("bookmark_size", 0);
+
+        for(int i = 0 ; i < size ; i++) {
+            Mark mk = new Mark();
+            mk.title = sp.getString("title_" + i, "");
+            mk.author = sp.getString("author_" + i, "");
+            mk.org = sp.getString("org_" + i, "");
+            mk.email = sp.getString("email_" + i, "");
+            mk.type = sp.getString("type_" + i, "");
+            mk.abstract_kor = sp.getString("abstract_kor_" + i, "");
+
+            bookmark_data.add(mk);
+        }
+    }
+
+    public void saveBookmark() {
+        SharedPreferences sp = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+        SharedPreferences.Editor edit = sp.edit();
+
+        edit.putInt("bookmark_size", bookmark_data.size());
+
+        for(int i = 0 ; i < bookmark_data.size() ; i++) {
+            edit.putString("title_" + i, bookmark_data.get(i).title);
+            edit.putString("author_" + i, bookmark_data.get(i).title);
+            edit.putString("org_" + i, bookmark_data.get(i).title);
+            edit.putString("email_" + i, bookmark_data.get(i).title);
+            edit.putString("type_" + i, bookmark_data.get(i).title);
+            edit.putString("abstract_kor" + i, bookmark_data.get(i).title);
+        }
+
+        edit.commit();
     }
 }

@@ -13,6 +13,7 @@
     <string name="logout_alert">로그아웃 하시겠습니까?</string>
     <string name="progress_login">로그인 중입니다..</string>
     <string name="load_failed">로딩에 실패했습니다.</string>
+    <string name="delete_bookmark">북마크를 취소하시겠습니까?</string>
 
     <string name="search">SEARCH</string>
     <string name="bookmark">BOOKMARK</string>

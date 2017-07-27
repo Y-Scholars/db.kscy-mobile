@@ -16,6 +16,7 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 
 import org.kscy.db.kscydatabase.R;
 import org.kscy.db.kscydatabase.activity.DetailActivity;
+import org.kscy.db.kscydatabase.activity.MainActivity;
 import org.kscy.db.kscydatabase.model.Hits;
 import org.kscy.db.kscydatabase.model.SearchResult;
 import org.kscy.db.kscydatabase.model._source;
@@ -79,6 +80,7 @@ public class SearchFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
                 _source src = (_source) mAdapter.getItem(i);
                 Intent intent = new Intent(getContext(), DetailActivity.class);
                 intent.putExtra("title", src.getResearch_name());
@@ -87,6 +89,11 @@ public class SearchFragment extends Fragment {
                 intent.putExtra("email", src.getEmail());
                 intent.putExtra("type", src.getType());
                 intent.putExtra("abstract_kor", src.getAbstract_kor());
+                for(int k = 0 ; k < MainActivity.bookmark_data.size() ; k++) {
+                    if(src.getResearch_name().equals(MainActivity.bookmark_data.get(k).title) && src.getEmail().equals(MainActivity.bookmark_data.get(k).email)) {
+                        intent.putExtra("bookmark", true);
+                    }
+                }
                 startActivity(intent);
             }
         });
@@ -141,6 +148,10 @@ public class SearchFragment extends Fragment {
                 t.printStackTrace();
             }
         });
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }
