@@ -17,7 +17,7 @@
             android:id="@+id/guillotine_hamburger"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:padding="5dp"
+            android:padding="8dp"
             android:src="@drawable/ic_menu_90"
             android:layout_alignParentLeft="true"/>
 
@@ -39,7 +39,7 @@
             android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/share_group"
+                android:id="@+id/search_group"
                 style="@style/LinearLayout.GuillotineItem"
                 android:layout_marginTop="@dimen/guillotine_medium_margin">
 
@@ -51,13 +51,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/share"
+                    android:text="@string/search"
                     android:textSize="22sp"
                     android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/library_group"
+                android:id="@+id/bookmark_group"
                 style="@style/LinearLayout.GuillotineItem">
 
                 <!--<ImageView-->
@@ -68,13 +68,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/library"
+                    android:text="@string/bookmark"
                     android:textSize="22sp"
                     android:textColor="@color/white"/>
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/mybook_group"
+                android:id="@+id/profile_group"
                 style="@style/LinearLayout.GuillotineItem">
 
                 <!--<ImageView-->
@@ -85,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@string/mybook"
+                    android:text="@string/profile"
                     android:textSize="22sp"
                     android:textColor="@color/white"/>
             </LinearLayout>

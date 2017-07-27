@@ -6,23 +6,29 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import org.kscy.db.kscydatabase.R;
+import org.kscy.db.kscydatabase.fragment.BookmarkFragment;
+import org.kscy.db.kscydatabase.fragment.ProfileFragment;
+import org.kscy.db.kscydatabase.fragment.SearchFragment;
+import org.kscy.db.kscydatabase.fragment.SettingFragment;
 
 import butterknife.BindString;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final static String TAG = "MainActivity";
     private static final long RIPPLE_DURATION = 250;
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar) RelativeLayout toolbar;
     @BindView(R.id.content_hamburger) ImageView contentHamburger;
     @BindView(R.id.content_search) ImageView search_btn;
+    @BindView(R.id.actionbar_title) TextView actionbar_title;
+    @BindView(R.id.search_edit) EditText search_edit;
 
     @BindString(R.string.logout_alert) String logout;
     @BindString(R.string.confirm) String confirm;
@@ -54,14 +62,39 @@ public class MainActivity extends AppCompatActivity {
                 .setActionBarViewForAnimation(toolbar)
                 .setClosedOnStart(true)
                 .build();
-//
-//        guillotineMenu.findViewById(R.id.share_group).setOnClickListener(this);
-//        guillotineMenu.findViewById(R.id.library_group).setOnClickListener(this);
-//        guillotineMenu.findViewById(R.id.mybook_group).setOnClickListener(this);
-//        guillotineMenu.findViewById(R.id.logout_group).setOnClickListener(this);
-//        guillotineMenu.findViewById(R.id.settings_group).setOnClickListener(this);
-//
-//        getSupportFragmentManager().beginTransaction().replace(R.id.content, new ShareFragment()).commit();
+
+        guillotineMenu.findViewById(R.id.search_group).setOnClickListener(this);
+        guillotineMenu.findViewById(R.id.bookmark_group).setOnClickListener(this);
+        guillotineMenu.findViewById(R.id.profile_group).setOnClickListener(this);
+        guillotineMenu.findViewById(R.id.logout_group).setOnClickListener(this);
+        guillotineMenu.findViewById(R.id.settings_group).setOnClickListener(this);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, SearchFragment.newInstance()).commit();
+
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                search_edit.setVisibility(View.VISIBLE);
+                actionbar_title.setVisibility(View.INVISIBLE);
+
+                search_edit.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                    @Override
+                    public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                        switch (i) {
+                            case EditorInfo.IME_ACTION_SEARCH:
+                                if(!search_edit.getText().toString().equals("")) {
+                                    SearchFragment fragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.content);
+                                    fragment.getList(search_edit.getText().toString());
+                                }
+                                break;
+                            default:
+                                return false;
+                        }
+                        return true;
+                    }
+                });
+            }
+        });
     }
 
     private void logout() {
@@ -118,5 +151,43 @@ public class MainActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.search_group :
+                search_btn.setVisibility(View.VISIBLE);
+                guillotineAnimation.close();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, SearchFragment.newInstance()).commit();
+                break;
+            case R.id.bookmark_group :
+                search_edit.setVisibility(View.INVISIBLE);
+                actionbar_title.setVisibility(View.VISIBLE);
+                search_btn.setVisibility(View.GONE);
+                guillotineAnimation.close();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, BookmarkFragment.newInstance()).commit();
+                break;
+            case R.id.profile_group :
+                search_edit.setVisibility(View.INVISIBLE);
+                actionbar_title.setVisibility(View.VISIBLE);
+                search_btn.setVisibility(View.GONE);
+                guillotineAnimation.close();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, ProfileFragment.newInstance()).commit();
+                break;
+            case R.id.logout_group :
+                search_edit.setVisibility(View.INVISIBLE);
+                actionbar_title.setVisibility(View.VISIBLE);
+                search_btn.setVisibility(View.GONE);
+                logout();
+                break;
+            case R.id.settings_group :
+                search_edit.setVisibility(View.INVISIBLE);
+                actionbar_title.setVisibility(View.VISIBLE);
+                search_btn.setVisibility(View.GONE);
+                guillotineAnimation.close();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, SettingFragment.newInstance()).commit();
+                break;
+        }
     }
 }
