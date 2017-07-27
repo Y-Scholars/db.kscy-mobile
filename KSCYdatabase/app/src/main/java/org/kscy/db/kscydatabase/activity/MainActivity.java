@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private final static String TAG = "MainActivity";
     private static final long RIPPLE_DURATION = 250;
+    private boolean check = false;
     private View guillotineMenu;
     private GuillotineAnimation guillotineAnimation;
 
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         guillotineMenu.findViewById(R.id.bookmark_group).setOnClickListener(this);
         guillotineMenu.findViewById(R.id.profile_group).setOnClickListener(this);
         guillotineMenu.findViewById(R.id.logout_group).setOnClickListener(this);
-        guillotineMenu.findViewById(R.id.settings_group).setOnClickListener(this);
+//        guillotineMenu.findViewById(R.id.settings_group).setOnClickListener(this);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.content, SearchFragment.newInstance()).commit();
 
@@ -93,6 +94,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         return true;
                     }
                 });
+
+                if(!search_edit.getText().toString().equals("") && check) {
+                    SearchFragment fragment = (SearchFragment) getSupportFragmentManager().findFragmentById(R.id.content);
+                    fragment.getList(search_edit.getText().toString());
+                }
+                check = true;
             }
         });
     }
@@ -162,6 +169,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, SearchFragment.newInstance()).commit();
                 break;
             case R.id.bookmark_group :
+                check = false;
                 search_edit.setVisibility(View.INVISIBLE);
                 actionbar_title.setVisibility(View.VISIBLE);
                 search_btn.setVisibility(View.GONE);
@@ -169,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, BookmarkFragment.newInstance()).commit();
                 break;
             case R.id.profile_group :
+                check = false;
                 search_edit.setVisibility(View.INVISIBLE);
                 actionbar_title.setVisibility(View.VISIBLE);
                 search_btn.setVisibility(View.GONE);
@@ -176,18 +185,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 getSupportFragmentManager().beginTransaction().replace(R.id.content, ProfileFragment.newInstance()).commit();
                 break;
             case R.id.logout_group :
+                check = false;
                 search_edit.setVisibility(View.INVISIBLE);
                 actionbar_title.setVisibility(View.VISIBLE);
                 search_btn.setVisibility(View.GONE);
                 logout();
                 break;
-            case R.id.settings_group :
-                search_edit.setVisibility(View.INVISIBLE);
-                actionbar_title.setVisibility(View.VISIBLE);
-                search_btn.setVisibility(View.GONE);
-                guillotineAnimation.close();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content, SettingFragment.newInstance()).commit();
-                break;
+//            case R.id.settings_group :
+//                check = false;
+//                search_edit.setVisibility(View.INVISIBLE);
+//                actionbar_title.setVisibility(View.VISIBLE);
+//                search_btn.setVisibility(View.GONE);
+//                guillotineAnimation.close();
+//                getSupportFragmentManager().beginTransaction().replace(R.id.content, SettingFragment.newInstance()).commit();
+//                break;
         }
     }
 }

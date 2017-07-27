@@ -142,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         edit.putString("email", email);
                         edit.putString("password", password);
+                        edit.putString("token", result.getData().getToken());
 
                         edit.commit();
                     }

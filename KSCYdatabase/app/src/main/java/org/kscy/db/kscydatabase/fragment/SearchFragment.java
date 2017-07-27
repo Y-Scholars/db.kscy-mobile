@@ -1,5 +1,6 @@
 package org.kscy.db.kscydatabase.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,8 +15,10 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
 
 import org.kscy.db.kscydatabase.R;
+import org.kscy.db.kscydatabase.activity.DetailActivity;
 import org.kscy.db.kscydatabase.model.Hits;
 import org.kscy.db.kscydatabase.model.SearchResult;
+import org.kscy.db.kscydatabase.model._source;
 import org.kscy.db.kscydatabase.module.Search;
 import org.kscy.db.kscydatabase.widget.ListViewAdapter;
 
@@ -36,6 +39,7 @@ public class SearchFragment extends Fragment {
     private final int type = 1;
     private int page_cnt = 1;
     private ListViewAdapter mAdapter;
+    private SearchResult data;
 
     @BindView(R.id.swipyrefreshlayout) SwipyRefreshLayout refreshLayout;
     @BindView(R.id.list_view) ListView listView;
@@ -75,9 +79,15 @@ public class SearchFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Intent intent = new Intent(getContext(), InfoActivity.class);
-//                intent.putExtra("id", mAdapter.getId(i));
-//                startActivity(intent);
+                _source src = (_source) mAdapter.getItem(i);
+                Intent intent = new Intent(getContext(), DetailActivity.class);
+                intent.putExtra("title", src.getResearch_name());
+                intent.putExtra("author", src.getResearcher_name());
+                intent.putExtra("org", src.getOrg());
+                intent.putExtra("email", src.getEmail());
+                intent.putExtra("type", src.getType());
+                intent.putExtra("abstract_kor", src.getAbstract_kor());
+                startActivity(intent);
             }
         });
 
@@ -88,12 +98,21 @@ public class SearchFragment extends Fragment {
             }
         });
 
-        loadList(page_cnt++);
-
         return view;
     }
 
     void loadList(int page) {
+        if(data != null) {
+            Hits result = data.getHits();
+            for (int i = (page*20) ; i < (page*20) + 20; i++) {
+                if(i >= result.getTotal())
+                    break;
+                Hits res = result.getHits().get(i);
+                mAdapter.addItem(res.get_source());
+                mAdapter.dataChange();
+            }
+        }
+        refreshLayout.setRefreshing(false);
     }
 
     public void getList(String key) {
@@ -109,17 +128,11 @@ public class SearchFragment extends Fragment {
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {
-                Hits result = response.body().getHits();
-
+                data = response.body();
                 linlaHeaderProgress.setVisibility(View.GONE);
-                if(result != null) {
-                    for (int i = 0; i < result.getTotal(); i++) {
-                        Hits res = result.getHits().get(i);
-                        mAdapter.addItem(res.get_source().getResearch_name(), res.get_source().getOrg(), res.get_source().getResearcher_name(), res.get_id());
-                        mAdapter.dataChange();
-                    }
-                }
-                refreshLayout.setRefreshing(false);
+
+                page_cnt = 0;
+                loadList(page_cnt++);
             }
 
             @Override

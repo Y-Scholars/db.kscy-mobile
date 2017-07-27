@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import org.kscy.db.kscydatabase.R;
+import org.kscy.db.kscydatabase.model._source;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 public class ListViewAdapter extends BaseAdapter {
 
     private Context mContext = null;
-    public ArrayList<ListData> mListData = new ArrayList<ListData>();
+    public ArrayList<_source> mListData = new ArrayList<_source>();
 
     public ListViewAdapter(Context mContext) {
         super();
@@ -40,10 +41,6 @@ public class ListViewAdapter extends BaseAdapter {
         return position;
     }
 
-    public String getId(int position) {
-        return mListData.get(position).id;
-    }
-
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder holder;
@@ -63,25 +60,17 @@ public class ListViewAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();
         }
 
-        ListData mData = mListData.get(position);
+        _source mData = mListData.get(position);
 
-        holder.title.setText(mData.title);
-        holder.highschool_name.setText("학교명 : " + mData.highschool_name);
-        holder.student_name.setText("저자 : " + mData.student_name);
+        holder.title.setText(mData.getResearch_name());
+        holder.highschool_name.setText(mContext.getResources().getString(R.string.org) + " : " + mData.getOrg());
+        holder.student_name.setText(mContext.getResources().getString(R.string.author) + " : " + mData.getResearcher_name());
 
         return convertView;
     }
 
-    public void addItem(String title, String highschool_name, String student_name, String id){
-        ListData addInfo = null;
-        addInfo = new ListData();
-
-        addInfo.title = title;
-        addInfo.highschool_name = highschool_name;
-        addInfo.student_name = student_name;
-        addInfo.id = id;
-
-        mListData.add(addInfo);
+    public void addItem(_source source){
+        mListData.add(source);
     }
 
     public void remove(int position){
