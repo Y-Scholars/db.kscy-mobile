@@ -3,6 +3,7 @@ package org.kscy.db.kscydatabase.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,9 @@ import org.kscy.db.kscydatabase.R;
 import org.kscy.db.kscydatabase.activity.DetailActivity;
 import org.kscy.db.kscydatabase.activity.MainActivity;
 import org.kscy.db.kscydatabase.model.Hits;
+import org.kscy.db.kscydatabase.model.MultiMatch;
+import org.kscy.db.kscydatabase.model.Query;
+import org.kscy.db.kscydatabase.model.SearchQuery;
 import org.kscy.db.kscydatabase.model.SearchResult;
 import org.kscy.db.kscydatabase.model._source;
 import org.kscy.db.kscydatabase.module.Search;
@@ -36,7 +40,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SearchFragment extends Fragment {
 
-    private final static String TAG = "ShareFragment";
+    private final static String TAG = "SearchFragment";
     private final int type = 1;
     private int page_cnt = 1;
     private ListViewAdapter mAdapter;
@@ -112,7 +116,7 @@ public class SearchFragment extends Fragment {
         if(data != null) {
             Hits result = data.getHits();
             for (int i = (page*20) ; i < (page*20) + 20; i++) {
-                if(i >= result.getTotal())
+                if(i >= result.getHits().size())
                     break;
                 Hits res = result.getHits().get(i);
                 mAdapter.addItem(res.get_source());
@@ -131,7 +135,17 @@ public class SearchFragment extends Fragment {
 
         Search search = retrofit.create(Search.class);
 
-        Call<SearchResult> call = search.search(200, key);
+        String[] field = new String[4];
+        field[0] = "research_name";
+        field[1] = "abstract_kor";
+        field[2] = "researcher_name";
+        field[3] = "org";
+
+        MultiMatch multiMatch = new MultiMatch();
+        multiMatch.setQuery(key);
+        multiMatch.setFields(field);
+
+        Call<SearchResult> call = search.search(new SearchQuery(new Query(multiMatch)));
         call.enqueue(new Callback<SearchResult>() {
             @Override
             public void onResponse(Call<SearchResult> call, Response<SearchResult> response) {

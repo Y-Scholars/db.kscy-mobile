@@ -52,11 +52,13 @@ public class DetailActivity extends AppCompatActivity {
                     saveBookmark();
                 }
             }
+            m = false;
         } else {
             Glide.with(this).load(R.drawable.bookmark_selected).into(bookmark);
 
             MainActivity.bookmark_data.add(mk);
             saveBookmark();
+            m = true;
         }
     }
 

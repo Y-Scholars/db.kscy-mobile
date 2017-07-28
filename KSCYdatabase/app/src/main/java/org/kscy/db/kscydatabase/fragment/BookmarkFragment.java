@@ -110,7 +110,7 @@ public class BookmarkFragment extends Fragment {
 
                             @Override
                             public void onDismiss(ListView listView, final int[] reverseSortedPositions) {
-                                Mark tmp;
+                                Mark tmp = null;
                                 for (final int position : reverseSortedPositions) {
                                     for(int k = 0; k < MainActivity.bookmark_data.size() ; k++) {
                                         _source src = (_source) mAdapter.getItem(position);

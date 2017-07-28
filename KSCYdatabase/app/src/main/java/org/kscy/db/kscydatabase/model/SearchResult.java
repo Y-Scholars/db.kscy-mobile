@@ -56,6 +56,6 @@ public class SearchResult {
     @Override
     public String toString()
     {
-        return "ClassPojo [hits = "+hits+", _shards = "+_shards+", timed_out = "+timed_out+", took = "+took+"]";
+        return "ClassPojo [hits = "+hits.toString()+", _shards = "+_shards.toString()+", timed_out = "+timed_out+", took = "+took+"]";
     }
 }
